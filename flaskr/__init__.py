@@ -6,9 +6,6 @@ from flask import Flask, session, escape, request, redirect, url_for
 
 
 
-
-
-
 app = Flask(__name__)
 
 app.debug = True
