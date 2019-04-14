@@ -46,7 +46,17 @@ def register():
     if 'username' in session:
         redirect(url_for('game'))
         # return 'Hey, {}!'.format(escape(session['username']))
-    return """      """
+    return """   
+    <form action="" method="post">
+            <p>Username <input name="username"></p>
+            <p>Password <input name="username"></p>
+            <button>Sign in</button>
+            
+            
+        </form>
+    
+    
+       """
 
 
 
