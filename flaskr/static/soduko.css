@@ -1,0 +1,40 @@
+html{
+  width:100vh;
+  height:100vh;
+}
+input{
+  width: 3vw;
+  height: 3vh;
+}
+form{
+  margin-left:31vw;
+  margin-top: 20vh;
+}
+.fixed{
+  background-color: limegreen;
+  
+}
+.general{
+  background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+}
+.wrong{
+  background-color:rosybrown;
+  
+}
+#congratulations{
+
+  width:70vw;
+  height:80vh;
+  margin:auto;
+  margin-left:20vh;
+  
+  }
+#mainMassege{
+  padding-top:20vh;
+  width:60%;
+  margin:auto;
+  
+}
+h1,p{
+  text-align: center;
+}
