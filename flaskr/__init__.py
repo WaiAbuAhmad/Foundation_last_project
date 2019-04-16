@@ -1,7 +1,9 @@
 import os
+import sqlite3 as sql
 from os import urandom
 from soduko_version3 import grid_creater
-from flask import Flask, session, escape, request, redirect, url_for
+from flask import Flask, session,  request, redirect, url_for
+from db import *
 
 
 
@@ -16,7 +18,7 @@ app.secret_key = urandom(24)
 def index():
     if 'username' in session:
         redirect(url_for('game'))
-        # return 'Hey, {}!'.format(escape(session['username']))
+        
     return """ 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,10 +49,11 @@ def register():
         redirect(url_for('game'))
         # return 'Hey, {}!'.format(escape(session['username']))
     return """   
-    <form action="" method="post">
-            <p>Username <input name="username"></p>
-            <p>Password <input name="username"></p>
-            <button>Sign in</button>
+    <form action="/new_user" method="post">
+            <p>Username <input name="name"></p>
+            <p>Email <input name="email"></p>
+            <p>Password <input name="password"></p>
+            <button>Register</button>
             
             
         </form>
@@ -60,16 +63,35 @@ def register():
 
 
 
-@app.route('/sign_in', methods=['GET', 'POST'])
-def sign_in():
+@app.route('/sign_in_check', methods=['GET', 'POST'])
+def sign_in_check():
     if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('game'))
+         if 'name' in session:
+              return redirect(url_for('game'))
+              
+         else:
+               
+               email = request.form['email']
+               password = request.form['password']
+               
+               login_data=get_db('SELECT email, password FROM users WHERE email = "{}" and password = "{}"'.format(email,password))
+               if len(login_data )!=0 :
+                    return redirect(url_for('game'))
+                    
+               else:
+                    
+                    return redirect(url_for('register'))
+                   
+
+
+@app.route('/sign_in', methods=['GET', 'POST'])
+def sign_in():           
+                           
     return '''
-        <form action="" method="post">
-            <p>Username <input name="username"></p>
-            <p>Password <input name="username"></p>
-            <button>Sign in</button>
+        <form action="/sign_in_check" method="post">
+            <p>Username <input name="email"></p>
+            <p>Password <input name="password"></p>
+            <button type="submit">Sign in</button>
             
             
         </form>
@@ -80,6 +102,18 @@ def sign_in():
 def sign_out():
     session.pop('username')
     return redirect(url_for('index'))
+
+
+@app.route('/new_user',methods = ['POST', 'GET'])
+def addrec():
+     
+     if request.method == 'POST':
+          name = request.form['name']
+          email = request.form['email']
+          password = request.form['password']
+          insert_db('INSERT INTO users (name , email, password) VALUES("{}","{}","{}")'.format(name,email,password))
+     return redirect(url_for('game'))  
+
 
 
 @app.route('/Congratulations')
@@ -419,7 +453,9 @@ def game():
                 """
 
 
-
+              
+               
+               
 
 
 if __name__ == "__main__":
