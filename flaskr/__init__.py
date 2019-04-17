@@ -16,7 +16,7 @@ app.secret_key = urandom(24)
 
 @app.route('/')
 def index():
-    if 'username' in session:
+    if 'email' in session:
         redirect(url_for('game'))
         
     return """ 
@@ -45,7 +45,7 @@ def index():
 
 @app.route('/register')
 def register():
-    if 'username' in session:
+    if 'email' in session:
         redirect(url_for('game'))
         # return 'Hey, {}!'.format(escape(session['username']))
     return """   
@@ -100,7 +100,7 @@ def sign_in():
 
 @app.route('/sign_out')
 def sign_out():
-    session.pop('username')
+    session.pop('name')
     return redirect(url_for('index'))
 
 

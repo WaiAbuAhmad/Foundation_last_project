@@ -36,7 +36,7 @@ function checkCell(ID,VALUE){
   }
   
   if (inputCount.length == 0){
-    location.replace("/congradulations")
+    location.replace("/Congratulations")
   }
 }
   
