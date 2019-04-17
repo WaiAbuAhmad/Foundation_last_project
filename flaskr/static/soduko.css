@@ -1,12 +1,12 @@
 html{
-  width:100vh;
+  font-family: 'Open Sans', sans-serif;
   height:100vh;
 }
 input{
   width: 3vw;
   height: 3vh;
 }
-form{
+#gamegrid{
   margin-left:31vw;
   margin-top: 20vh;
 }
@@ -37,4 +37,47 @@ form{
 }
 h1,p{
   text-align: center;
+}
+#mainpage{
+    
+    width: 60vw; 
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    padding-top:20vh;
+
+}
+#main_screen_button{
+  display:block;
+  width: 60vw; 
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+}
+#main_screen_button2{
+  display:block;
+  width: 60%; 
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  margin-top:2vh;
+}
+#register{
+  width: 60vw; 
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    
+}
+#register_form{
+  display:block;  
+  width:50%;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
 }

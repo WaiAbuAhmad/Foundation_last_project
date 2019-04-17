@@ -23,6 +23,8 @@ def index():
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -30,9 +32,9 @@ def index():
   <link rel="stylesheet" href="./static/soduko.css">
   <title>WELCOME PAGE</title>
 </head>
-<body onload="" >
- <h1>Welcome to C<>DEduko</h1>
- <p>register or sign in to play the C<>DEduko game</p>
+<body id="mainpage" >
+ <h1>Welcome to C<>DEdoku</h1>
+ <p>register or sign in to play the C<>DEdoku game</p>
  <button id="main_screen_button" onclick='location.replace("/register")'>Register</button>
  <button id="main_screen_button" onclick='location.replace("/sign_in")'>Sign in</button> 
 </body>
@@ -46,27 +48,44 @@ def index():
 @app.route('/register')
 def register():
     if 'email' in session:
-        redirect(url_for('game'))
+        return redirect(url_for('game'))
         # return 'Hey, {}!'.format(escape(session['username']))
-    return """   
-    <form action="/new_user" method="post">
-            <p>Username <input name="name"></p>
-            <p>Email <input name="email"></p>
-            <p>Password <input name="password"></p>
-            <button>Register</button>
-            
-            
-        </form>
-    
-    
-       """
+    else:
+
+
+         return """   
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./static/javaskript.js"></script>
+  <link rel="stylesheet" href="./static/soduko.css">
+  <title>WELCOME PAGE</title>
+</head>
+<body id="mainpage" >
+     <form action="/new_user" method="post" id="register">
+               <p>Username </p><input name="name" id = "register_form" type="text" required>
+               <p>Email </p><input name="email" id = "register_form" type="email" required>
+               <p>Password </p><input name="password" id = "register_form" type="password" required>
+               <button id="main_screen_button2" >Register</button>
+               
+               
+     </form>
+</body>
+</html>  
+     
+          """
 
 
 
 @app.route('/sign_in_check', methods=['GET', 'POST'])
 def sign_in_check():
     if request.method == 'POST':
-         if 'name' in session:
+         if 'email' in session:
               return redirect(url_for('game'))
               
          else:
@@ -76,6 +95,7 @@ def sign_in_check():
                
                login_data=get_db('SELECT email, password FROM users WHERE email = "{}" and password = "{}"'.format(email,password))
                if len(login_data )!=0 :
+                    session['email'] = request.form['email']
                     return redirect(url_for('game'))
                     
                else:
@@ -100,7 +120,7 @@ def sign_in():
 
 @app.route('/sign_out')
 def sign_out():
-    session.pop('name')
+    session.pop('email',None )
     return redirect(url_for('index'))
 
 
@@ -112,13 +132,17 @@ def addrec():
           email = request.form['email']
           password = request.form['password']
           insert_db('INSERT INTO users (name , email, password) VALUES("{}","{}","{}")'.format(name,email,password))
+          session['email'] = request.form['email']
      return redirect(url_for('game'))  
 
 
 
 @app.route('/Congratulations')
 def congradulations():
-     return """
+     if "email" not in session:
+          return redirect(url_for('index'))
+     else:
+          return """
          <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,9 +167,13 @@ def congradulations():
     
 @app.route('/game')
 def game():
-      json_variable = grid_creater()
+     if "email" not in session:
+          
+          return redirect(url_for('index'))
+     else:
+          json_variable = grid_creater()
       
-      return f"""
+          return f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +186,7 @@ def game():
 </head>
 <body onload="" >
 
-  <form action="">
+  <form action="" id="gamegrid">
     <table class="tb2">
     <h1>
       <caption>C<>DEdoku</caption>
@@ -442,6 +470,8 @@ def game():
       </tbody>
     </table>
   </form>
+
+  <button onclick='location.replace("/sign_out")'>sign out</button>
   <script>
     add_attribute();
     checkInputValue();
