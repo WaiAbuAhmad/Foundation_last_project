@@ -1,5 +1,4 @@
 import os
-import sqlite3 as sql
 from os import urandom
 from soduko_version3 import grid_creater
 from flask import Flask, session,  request, redirect, url_for
