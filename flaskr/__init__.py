@@ -108,13 +108,30 @@ def sign_in_check():
 def sign_in():           
                            
     return '''
-        <form action="/sign_in_check" method="post">
-            <p>Username <input name="email"></p>
-            <p>Password <input name="password"></p>
-            <button type="submit">Sign in</button>
-            
-            
-        </form>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./static/javaskript.js"></script>
+  <link rel="stylesheet" href="./static/soduko.css">
+  <title>WELCOME PAGE</title>
+</head>
+<body id="mainpage" >
+  <form action="/sign_in_check" method="post" id="register">
+    <p>Username </p><input name="email" id = "register_form" required type="email">
+    <p>Password </p><input name="password" id = "register_form" required type="password">
+    <button type="submit" id="main_screen_button2">Sign in</button>
+    
+    
+</form>
+               
+     
+</body>
+</html>
     '''
 
 
@@ -185,7 +202,7 @@ def game():
   <title>Document</title>
 </head>
 <body onload="" >
-
+     <button onclick='location.replace("/sign_out")'>sign out</button>
   <form action="" id="gamegrid">
     <table class="tb2">
     <h1>
@@ -471,9 +488,9 @@ def game():
     </table>
   </form>
 
-  <button onclick='location.replace("/sign_out")'>sign out</button>
+  
   <script>
-    add_attribute();
+    addAttribute();
     checkInputValue();
     
     </script>

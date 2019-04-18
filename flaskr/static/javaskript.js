@@ -1,4 +1,4 @@
-function random_number(){
+function randomNumber(){
   random_value = [];
   while (random_value.length <40){
     random_number = Math.floor(Math.random()*80)+1;
@@ -9,8 +9,8 @@ function random_number(){
   }
   return random_value;
 }
-function add_attribute(){
-  attribute_id = random_number();
+function addAttribute(){
+  attribute_id = randomNumber();
   for (i=0; i< 40; i++){
     document.getElementById(attribute_id[i]).setAttribute("disabled",true);
     document.getElementById(attribute_id[i]).setAttribute("class","fixed");
