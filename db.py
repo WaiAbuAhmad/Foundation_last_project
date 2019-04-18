@@ -3,13 +3,11 @@ import click
 
 
 
-#conn = sqlite3.connect('database.db')
-#conn.execute('CREATE TABLE users (name TEXT, email TEXT, password TEXT)')
-#conn.close()
-def get_db(commend):
+
+def get_database(statement):
     conn = sqlite3.connect('database.db')
     cur = conn.cursor()
-    cur.execute(commend)
+    cur.execute(statement)
     rows = cur.fetchall()  
     print(rows)   
     return rows 
@@ -18,10 +16,10 @@ def get_db(commend):
 
 
 
-def insert_db(commend):
+def insert_database(statement):
     conn = sqlite3.connect('database.db')
     cur = conn.cursor()
-    cur.execute(commend)
+    cur.execute(statement)
     conn.commit()
     conn.close()
 

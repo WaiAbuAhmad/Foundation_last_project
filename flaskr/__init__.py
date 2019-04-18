@@ -93,7 +93,7 @@ def sign_in_check():
                email = request.form['email']
                password = request.form['password']
                
-               login_data=get_db('SELECT email, password FROM users WHERE email = "{}" and password = "{}"'.format(email,password))
+               login_data=get_database('SELECT email, password FROM users WHERE email = "{}" and password = "{}"'.format(email,password))
                if len(login_data )!=0 :
                     session['email'] = request.form['email']
                     return redirect(url_for('game'))
@@ -148,7 +148,7 @@ def addrec():
           name = request.form['name']
           email = request.form['email']
           password = request.form['password']
-          insert_db('INSERT INTO users (name , email, password) VALUES("{}","{}","{}")'.format(name,email,password))
+          insert_database('INSERT INTO users (name , email, password) VALUES("{}","{}","{}")'.format(name,email,password))
           session['email'] = request.form['email']
      return redirect(url_for('game'))  
 
