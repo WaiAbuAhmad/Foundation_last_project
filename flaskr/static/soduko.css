@@ -35,7 +35,7 @@ input{
   margin:auto;
   
 }
-h1,p{
+h1,p,h3{
   text-align: center;
 }
 #mainpage{
@@ -45,7 +45,7 @@ h1,p{
     margin: 0 auto;
     padding: 10px;
     position: relative;
-    padding-top:20vh;
+    padding-top:5vh;
 
 }
 #main_screen_button{
@@ -55,6 +55,7 @@ h1,p{
   margin: 0 auto;
   padding: 10px;
   position: relative;
+  margin-top:2vh;
 }
 #main_screen_button2{
   display:block;
@@ -80,4 +81,8 @@ h1,p{
     margin: 0 auto;
     padding: 10px;
     position: relative;
+}
+h3{
+  margin-top:5vh;
+  margin-bottom: 6vh;
 }

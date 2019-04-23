@@ -63,10 +63,12 @@ def register():
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./static/javaskript.js"></script>
   <link rel="stylesheet" href="./static/soduko.css">
-  <title>WELCOME PAGE</title>
+  <title>WELCOME to C<>DEoku</title>
 </head>
 <body id="mainpage" >
      <form action="/new_user" method="post" id="register">
+     <h1>Welcome to C<>DEdoku</h1>
+     <h3>please register</h3>
                <p>Username </p><input name="name" id = "register_form" type="text" required>
                <p>Email </p><input name="email" id = "register_form" type="email" required>
                <p>Password </p><input name="password" id = "register_form" type="password" required>
@@ -117,10 +119,12 @@ def sign_in():
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./static/javaskript.js"></script>
   <link rel="stylesheet" href="./static/soduko.css">
-  <title>WELCOME PAGE</title>
+  <title>sign in</title>
 </head>
 <body id="mainpage" >
   <form action="/sign_in_check" method="post" id="register">
+  <h1>Welcome to C<>DEdoku</h1>
+     <h3>please register</h3>
     <p>Username </p><input name="email" id = "register_form" required type="email">
     <p>Password </p><input name="password" id = "register_form" required type="password">
     <button type="submit" id="main_screen_button2">Sign in</button>
@@ -167,7 +171,7 @@ def congradulations():
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./static/javaskript.js"></script>
   <link rel="stylesheet" href="./static/soduko.css">
-  <title>Document</title>
+  <title>congratulations</title>
 </head>
 <body id="congratulations" >
 <div id="mainMassege">
@@ -198,7 +202,7 @@ def game():
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./static/javaskript.js"></script>
   <link rel="stylesheet" href="./static/soduko.css">
-  <title>Document</title>
+  <title>game</title>
 </head>
 <body onload="" >
      <button onclick='location.replace("/sign_out")'>sign out</button>
@@ -491,6 +495,7 @@ def game():
   <script>
     addAttribute();
     checkInputValue();
+    
     
     </script>
 </body>
