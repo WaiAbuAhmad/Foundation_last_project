@@ -48,7 +48,7 @@ def index():
 def register():
     if 'email' in session:
         return redirect(url_for('game'))
-        # return 'Hey, {}!'.format(escape(session['username']))
+       
     else:
 
 

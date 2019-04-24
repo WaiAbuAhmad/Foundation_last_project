@@ -1,6 +1,7 @@
 html{
   font-family: 'Open Sans', sans-serif;
   height:100vh;
+  
 }
 input{
   width: 3vw;
@@ -46,6 +47,7 @@ h1,p,h3{
     padding: 10px;
     position: relative;
     padding-top:5vh;
+    background-color: #DCDCDC;
 
 }
 #main_screen_button{
