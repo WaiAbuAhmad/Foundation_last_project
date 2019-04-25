@@ -23,7 +23,6 @@ def index():
 <html lang="en">
 <head>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -38,18 +37,24 @@ def index():
  <button id="main_screen_button" onclick='location.replace("/sign_in")'>Sign in</button> 
 </body>
 </html>
-
     
     
 """
          
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    if 'email' in session:
-        return redirect(url_for('game'))
+    if request.method == 'POST':
+
+         name = request.form['name']
+         email = request.form['email']
+         password = request.form['password']
+         insert_database('INSERT INTO users (name , email, password) VALUES("{}","{}","{}")'.format(name,email,password))
+         session['email'] = request.form['email']
+         return redirect(url_for('game'))  
        
     else:
+         
 
 
          return """   
@@ -57,7 +62,6 @@ def register():
 <html lang="en">
 <head>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -66,7 +70,7 @@ def register():
   <title>WELCOME to C<>DEoku</title>
 </head>
 <body id="mainpage" >
-     <form action="/new_user" method="post" id="register">
+     <form action="" method="post" id="register">
      <h1>Welcome to C<>DEdoku</h1>
      <h3>please register</h3>
                <p>Username </p><input name="name" id = "register_form" type="text" required>
@@ -83,9 +87,12 @@ def register():
 
 
 
-@app.route('/sign_in_check', methods=['GET', 'POST'])
-def sign_in_check():
-    if request.method == 'POST':
+                   
+
+
+@app.route('/sign_in', methods=['GET', 'POST'])
+def sign_in():   
+     if request.method == 'POST':
          if 'email' in session:
               return redirect(url_for('game'))
               
@@ -101,19 +108,14 @@ def sign_in_check():
                     
                else:
                     
-                    return redirect(url_for('register'))
-                   
-
-
-@app.route('/sign_in', methods=['GET', 'POST'])
-def sign_in():           
+                    return redirect(url_for('register'))        
                            
-    return '''
+     else:
+         return '''
         <!DOCTYPE html>
 <html lang="en">
 <head>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -122,7 +124,7 @@ def sign_in():
   <title>sign in</title>
 </head>
 <body id="mainpage" >
-  <form action="/sign_in_check" method="post" id="register">
+  <form action="" method="post" id="register">
   <h1>Welcome to C<>DEdoku</h1>
      <h3>please register</h3>
     <p>Username </p><input name="email" id = "register_form" required type="email">
@@ -144,16 +146,7 @@ def sign_out():
     return redirect(url_for('index'))
 
 
-@app.route('/new_user',methods = ['POST', 'GET'])
-def addrec():
-     
-     if request.method == 'POST':
-          name = request.form['name']
-          email = request.form['email']
-          password = request.form['password']
-          insert_database('INSERT INTO users (name , email, password) VALUES("{}","{}","{}")'.format(name,email,password))
-          session['email'] = request.form['email']
-     return redirect(url_for('game'))  
+
 
 
 
@@ -490,7 +483,6 @@ def game():
       </tbody>
     </table>
   </form>
-
   
   <script>
     addAttribute();
@@ -500,7 +492,6 @@ def game():
     </script>
 </body>
 </html>
-
                 """
 
 
@@ -511,7 +502,3 @@ def game():
 
 if __name__ == "__main__":
     app.run()
-
-    
-
-    

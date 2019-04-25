@@ -88,3 +88,17 @@ h3{
   margin-top:5vh;
   margin-bottom: 6vh;
 }
+#welcomescreen{
+  display:inline-block;
+  float:left;
+  
+}
+#mainpage2{
+    
+  width: 100vw;  
+  background-color: #DCDCDC;
+}
+#register2{
+  width: 60vw; 
+  float:right;
+}
