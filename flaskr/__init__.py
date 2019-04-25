@@ -69,10 +69,14 @@ def register():
   <link rel="stylesheet" href="./static/soduko.css">
   <title>WELCOME to C<>DEoku</title>
 </head>
-<body id="mainpage" >
-     <form action="" method="post" id="register">
+<body id="mainpage2"  >
+     <div >
+     <div id="welcomescreen">
      <h1>Welcome to C<>DEdoku</h1>
      <h3>please register</h3>
+     </div>
+     <form action="/new_user" method="post" id="register2">
+     
                <p>Username </p><input name="name" id = "register_form" type="text" required>
                <p>Email </p><input name="email" id = "register_form" type="email" required>
                <p>Password </p><input name="password" id = "register_form" type="password" required>
@@ -80,6 +84,7 @@ def register():
                
                
      </form>
+    </div>
 </body>
 </html>  
      
